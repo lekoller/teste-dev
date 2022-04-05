@@ -1,13 +1,13 @@
 from django.db import models
 
 
-class Interprise(models.Model):
+class Enterprise(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=64)
-    doc = models.CharField(max_length=18)
+    name = models.CharField(max_length=64, unique=True)
+    doc = models.CharField(max_length=18, unique=True)
     about = models.CharField(max_length=255)
     active = models.BooleanField(default=True)
-    site = models.CharField(max_length=255)
+    site = models.CharField(max_length=255, unique=True)
     
     def __str__(self):
         return self.name
@@ -15,8 +15,8 @@ class Interprise(models.Model):
     class Meta:
         abstract = True
         
-class Provider(Interprise):
+class Provider(Enterprise):
     pass
 
-class Costumer(Interprise):
+class Customer(Enterprise):
     pass
