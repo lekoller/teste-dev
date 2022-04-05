@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'empresas',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,11 +79,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'fretapp',
-        'HOST': 'mongodb+srv://lekoller:djangomongopass@djangocluster.lua6n.mongodb.net/fretapp?retryWrites=true&w=majority',
-        'USER': 'lekoller',
-        'PASSWORD': 'djangomongopass'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fretappdb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgresPass',
+        'HOST': 'postgres',
+        'PORT': 5432
     }
 }
 
@@ -115,6 +120,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
