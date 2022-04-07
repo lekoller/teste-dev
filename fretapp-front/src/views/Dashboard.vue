@@ -32,7 +32,7 @@ export default Vue.extend({
   flex-flow: column wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 200vh;
+  height: 160vh;
   background-color: rgb(120, 117, 149);
 }
 </style>
