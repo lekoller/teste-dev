@@ -9,6 +9,9 @@ fretapp     | Starting development server at http://0.0.0.0:8000/
 fretapp     | Quit the server with CONTROL-C.
 ```
 
+## Frontend
+O frontend foi feito em Vue.js 2 com Vuetify. O CLI da Vue pode ser instalado por `yarn global add @vue/cli`, a partir disso, basta navegar para o diretório `/fretapp-front`, baixar as dependências com o comando `yarn`, e então pode-se rodar com `yarn serve`.
+
 # Endpoints
 - `/enterprises/providers/` (Registros de empresas)
 - `/enterprises/customers/` (Registros de clientes)
