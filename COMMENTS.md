@@ -29,3 +29,6 @@ Aproveitando que reparei que o objeto de clientes contem os mesmos dados básico
 
 ## Últimas instâncias
 Fora testado o reinício do banco de dados com as migrações sendo aplicadas automaticamente no docker-compose, e foi constatado um erro nas primeiras migrações, que levam um tempo para poder serem feitas, pois o conteiner do banco de dados leva um tempo maior para finalizar a contrução ao executar o `docker-compose up --build`. Para solucionar foi aplicado um delay de 15 segundos para iniciar os scripts relacionados ao Django. Fora adotado o termo `offers` para as ofertas e `bids` para lances.
+
+## Frontend
+A primeira versão do frontend não faz uso do Vuex, portanto para registrar ofertas e lances é necessário inserir o id manualmente no campo responsável no Dashboard.
