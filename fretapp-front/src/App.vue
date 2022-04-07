@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" v-bind:style="{background: 'rgb(120, 117, 149)'}">
     <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
         <v-list-item-content v-bind:style="{ height: '72px' }">
@@ -11,7 +11,7 @@
       <v-divider></v-divider>
 
       <v-list dense nav>
-        <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
+        <v-list-item v-for="item in items" :key="item.title" :to="item.to" @click="setPath" link>
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -33,14 +33,14 @@
       :collapse="!collapseOnScroll"
       :collapse-on-scroll="collapseOnScroll"
       app
-      color="deep-purple accent-4"
+      color="rgb(64, 62, 77)"
       dark
       scroll-target="#scrolling-techniques-6"
       height="72px"
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Collapsing Bar</v-toolbar-title>
+      <v-toolbar-title>{{ path }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -59,13 +59,19 @@
 
 <script lang="ts">
 import Vue from "vue";
+import router from "./router";
 
 export default Vue.extend({
   name: "App",
-
+  methods: {
+    setPath() {
+      this.path = router.currentRoute.name;
+    }
+  },
   data: () => ({
     drawer: null,
     collapseOnScroll: true,
+    path: router.currentRoute.name,
     items: [
       { title: "Dashboard", icon: "mdi-view-dashboard", to: "/" },
       { title: "Empresas", icon: "mdi-domain", to: "/enterprises" },

@@ -1,5 +1,10 @@
 <template>
-  <v-card class="mx-auto" max-width="94%" outlined v-bind:style="{margin: '30px 0'}">
+  <v-card
+    class="mx-auto"
+    max-width="94%"
+    outlined
+    v-bind:style="{ margin: '0 0 30px 0' }"
+  >
     <v-list-item three-line>
       <v-list-item-content>
         <div class="text-overline mb-4">{{ this.title }}</div>
@@ -11,9 +16,7 @@
           class="elevation-1"
         ></v-data-table>
 
-        <v-list-item-subtitle
-          >{{ this.info }}</v-list-item-subtitle
-        >
+        <v-list-item-subtitle>{{ this.info }}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
@@ -24,19 +27,19 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
+import Vue from "vue";
 
-  export default Vue.extend({
-    name: 'HelloWorld',
-    props: {
-        title: String,
-        info: String,
-        headers: Array,
-        data: Array,
-    }
+export default Vue.extend({
+  name: "HelloWorld",
+  props: {
+    title: String,
+    info: String,
+    headers: Array,
+    data: Array,
+  },
 
-    // data: () => ({
-      
-    // }),
-  })
+  // data: () => ({
+
+  // }),
+});
 </script>

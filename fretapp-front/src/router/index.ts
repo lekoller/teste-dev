@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'Dashboard',
+    component: Dashboard
   },
   {
     path: '/enterprises',
-    name: 'enterprises',
+    name: 'Empresas',
     component: () => import('../views/Enterprises.vue')
   },
   {
     path: '/busyness',
-    name: 'busyness',
+    name: 'Negócios',
     component: () => import('../views/Busyness.vue')
   }
 ]

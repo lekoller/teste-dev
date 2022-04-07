@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:style="{background: 'rgb(120, 117, 149)', paddingTop: '32px'}">
     <table-card
       :title="'Empresas'"
       :info="'Estas são as empresas fornecedoras.'"
