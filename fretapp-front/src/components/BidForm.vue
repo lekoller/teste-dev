@@ -12,42 +12,31 @@
         <form @submit.prevent="submit">
           <v-text-field
             v-model="value"
-            :error-messages="errors"
             label="Valor"
-            type="number"
+            prefix="R$"
             required
           ></v-text-field>
           <v-text-field
             v-model="amount"
-            :error-messages="errors"
             label="Montante"
-            type="number"
             required
           ></v-text-field>
-          <v-text-field
-            v-model="id_provider"
-            :error-messages="errors"
+          <v-select
+            v-model="provider_name"
+            :items="$store.getters.getProvidersNames"
             label="Fornecedor"
-            type="number"
+            data-vv-name="provider_name"
             required
-          ></v-text-field>
-          <v-text-field
-            v-model="id_offer"
-            :error-messages="errors"
+          ></v-select>
+          <v-select
+            v-model="offer_info"
+            :items="$store.getters.getOffersInfo"
             label="Oferta"
-            type="number"
+            data-vv-name="offer_info"
             required
-          ></v-text-field>
-          <!-- <v-select
-            v-model="select"
-            :items="items"
-            :error-messages="errors"
-            label="Select"
-            data-vv-name="select"
-            required
-          ></v-select> -->
+          ></v-select>
 
-          <v-btn class="mr-4" type="submit" :disabled="invalid"> confirmar </v-btn>
+          <v-btn class="mr-4" type="submit"> confirmar </v-btn>
           <v-btn @click="clear"> limpar </v-btn>
         </form>
       </v-list-item-content>
@@ -57,35 +46,43 @@
 
 <script lang="ts">
 import Vue from "vue";
+
+import store from "../store";
+import { IEnterpriseNameAndId, IOfferInfoAndId } from "../helpers";
 import busyness from "../services/busyness";
 
 export default Vue.extend({
   name: "Dashboard",
   data: () => ({
-    id_provider: NaN,
-    id_offer: NaN,
-    value: NaN,
-    amount: NaN,
-    // items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+    value: "",
+    amount: "",
+    offer_info: "",
+    provider_name: "",
   }),
 
   methods: {
     submit() {
-      busyness.createBid({
-        id_provider: this.id_provider,
-        id_offer: this.id_offer,
-        value: this.value,
-        amount: this.amount,
-      });
+      const bidFormData = {
+        id_provider: store.getters.getProvidersNamesAndId.find(
+          (prov: IEnterpriseNameAndId) => prov.name === this.provider_name
+        )["id"],
+        id_offer: store.getters.getOffersInfoAndId.find(
+          (offr: IOfferInfoAndId) => offr.info === this.offer_info
+        )["id"],
+        value: parseFloat(this.value),
+        amount: parseFloat(this.amount),
+      }
+
+      console.log(bidFormData);
       
+      busyness.createBid(bidFormData);
       this.clear();
     },
     clear() {
-      this.id_provider = NaN;
-      this.id_offer = NaN;
-      this.value = NaN;
-      this.amount = NaN;
-      // this.select = null;
+      this.value = "";
+      this.amount = "";
+      this.provider_name = "";
+      this.offer_info = "";
     },
   },
 });

@@ -24,6 +24,16 @@ export interface IBid {
   amount: number;
 }
 
+export interface IEnterpriseNameAndId {
+  id: number;
+  name: string;
+}
+
+export interface IOfferInfoAndId {
+  id: number;
+  info: string;
+}
+
 export const enterprisesRowMap = (provider: IEnterprise) => {
   if (provider.active) {
     provider.active = "Sim";
@@ -33,4 +43,3 @@ export const enterprisesRowMap = (provider: IEnterprise) => {
 
   return provider;
 };
-

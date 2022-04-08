@@ -4,14 +4,14 @@
       :title="'Empresas'"
       :info="'Estas são as empresas fornecedoras.'"
       :headers="headers"
-      :data="providers"
+      :data="$store.state.providers"
     />
 
     <table-card
       :title="'Clientes'"
       :info="'Estas são as empresas compradoras.'"
       :headers="headers"
-      :data="customers"
+      :data="$store.state.customers"
     />
   </div>
 </template>
@@ -19,8 +19,7 @@
 <script lang="ts">
 import Vue from "vue";
 import TableCard from "../components/TableCard.vue";
-import enterprises from "../services/enterprises";
-import {enterprisesRowMap} from "../helpers";
+import store from "../store"
 
 export default Vue.extend({
   name: "Home",
@@ -28,17 +27,10 @@ export default Vue.extend({
     TableCard,
   },
   created() {
-    enterprises.listProviders().then(res => {
-      this.providers = res.data.map(enterprisesRowMap)
-    })
-
-    enterprises.listCustomers().then(res => {
-      this.customers = res.data.map(enterprisesRowMap)
-    })
+    store.commit("loadProviders");
+    store.commit("loadCustomers");
   },
   data: () => ({
-    providers: [],
-    customers: [],
     headers: [
       {
         text: "Nome",

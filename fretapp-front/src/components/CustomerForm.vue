@@ -13,40 +13,35 @@
           <v-text-field
             v-model="name"
             :counter="64"
-            :error-messages="errors"
             label="Nome"
             required
           ></v-text-field>
           <v-text-field
             v-model="doc"
             :counter="18"
-            :error-messages="errors"
             label="Documento (CNPJ)"
             required
           ></v-text-field>
           <v-text-field
             v-model="about"
             :counter="255"
-            :error-messages="errors"
             label="Sobre"
             required
           ></v-text-field>
           <v-text-field
             v-model="site"
-            :error-messages="errors"
             label="Site"
             required
           ></v-text-field>
           <v-checkbox
-            v-model="checkbox"
-            :error-messages="errors"
+            v-model="active"
             value="true"
             label="Ativa"
-            type="active"
+            type="boolean"
             required
           ></v-checkbox>
 
-          <v-btn class="mr-4" type="submit" :disabled="invalid"> confirmar </v-btn>
+          <v-btn class="mr-4" type="submit"> confirmar </v-btn>
           <v-btn @click="clear"> limpar </v-btn>
         </form>
       </v-list-item-content>

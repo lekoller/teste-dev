@@ -62,6 +62,7 @@ export default Vue.extend({
       this.path = router.currentRoute.name;
     }
   },
+  
   data: () => ({
     drawer: null,
     collapseOnScroll: true,

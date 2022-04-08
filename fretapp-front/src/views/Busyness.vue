@@ -4,14 +4,14 @@
       :title="'Ofertas'"
       :info="'Ofertas anunciadas.'"
       :headers="headerOffers"
-      :data="offers"
+      :data="$store.state.offers"
     />
 
     <table-card
       :title="'Lances'"
       :info="'Serviços contratados.'"
       :headers="headerBids"
-      :data="bids"
+      :data="$store.state.bids"
     />
   </div>
 </template>
@@ -19,8 +19,7 @@
 <script lang="ts">
 import Vue from "vue";
 import TableCard from "../components/TableCard.vue";
-import busyness from "../services/busyness";
-// import { enterprisesRowMap } from "../helpers";
+import store from "../store";
 
 export default Vue.extend({
   name: "Home",
@@ -28,17 +27,10 @@ export default Vue.extend({
     TableCard,
   },
   created() {
-    busyness.listOffers().then((res) => {
-      this.offers = res.data;
-    });
-
-    busyness.listBids().then((res) => {
-      this.bids = res.data;
-    });
+    store.commit("loadOffers")
+    store.commit("loadBids")
   },
   data: () => ({
-    offers: [],
-    bids: [],
     headerOffers: [
       {
         text: "Oferta",
